@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+output_directory="./output"
+queries_directory="./queries"
+
+run_query() {
+    query=${1}
+    query_name="${query/.sql}"
+    query_path=$queries_directory/$query_name.sql
+    output_path=$output_directory/$query_name.txt
+
+    if [[ -r $query_path ]]; then
+        mysql -s \
+            -h 127.0.0.1 -P 3306 \
+            -u root --password='' \
+            < $query_path > $output_path
+    else
+        echo "$query_path: does not exist"
+    fi
+}
+
+run_all_in_dir() {
+    local queries_dir="./queries"
+    local queries=($(ls $queries_dir))
+
+    for query in "${queries[@]}"; do
+        run_query $query
+        echo "done"
+    done
+}
+
+main() {
+    query_name=${1}
+    if [[ -n $query_name ]]; then
+        run_query $query_name;
+    else
+        run_all_in_dir
+        echo "no query name"
+    fi
+}
+
+main "$@"
