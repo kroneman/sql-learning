@@ -6,15 +6,15 @@
 2. Open a terminal and navigate to the root of this project
 3. Start mysql server
 
-```
+```sh
 docker-compose up
 ```
 
 4. Use the name a query with the `bin/sqlrun` command to execute queries against the running database
 
 e.g.
-```
-bin/sqlrun init
+```sh
+bin/sqlrun ./sequence.txt
 ```
 
 >
