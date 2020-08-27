@@ -1,2 +1,6 @@
-# lesson_one
+# This file acts as a toggle for quick queries to run
+# create_database
+# create_person_table
+lesson_one
 lesson_one_distinct
+# lesson_one_where
